@@ -28,7 +28,7 @@ class Column:
         self.primary_key = primary_key
 
 # Initialize an empty list to store the columns
-@st.cache(allow_output_mutation=True)
+st.cache_data(allow_output_mutation=True)
 def get_columns():
     return []
 
