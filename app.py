@@ -28,7 +28,7 @@ class Column:
         self.primary_key = primary_key
 
 # Initialize an empty list to store the columns
-st.cache_data(allow_output_mutation=True)
+st.cache_data
 def get_columns():
     return []
 
@@ -83,7 +83,7 @@ def create_table(api_url, api_json, storage_token):
         st.info(response.text)
 
 
-## Streamlit app
+# Streamlit app
 def main():
 
     # Sidebar
