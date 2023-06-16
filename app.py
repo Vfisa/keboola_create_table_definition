@@ -83,7 +83,7 @@ def create_table(api_url, api_json, storage_token):
         st.info(response.text)
 
 
-# Streamlit app
+## Streamlit app
 def main():
 
     # Sidebar
