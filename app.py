@@ -136,6 +136,7 @@ def main():
     # Generate API JSON
     api_json = generate_api_json(columns, table_name)
 
+    """
     # Display the table of columns
     st.header('Columns')
     if columns:
@@ -160,6 +161,7 @@ def main():
         st.table(columns_df)
     else:
         st.info('No columns added yet.')
+    """
 
     # Create Table button
     if st.button('Create Table'):
