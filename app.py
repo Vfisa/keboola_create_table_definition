@@ -136,32 +136,6 @@ def main():
     # Generate API JSON
     api_json = generate_api_json(columns, table_name)
 
-    """
-    # Display the table of columns
-    st.header('Columns')
-    if columns:
-        columns_df = pd.DataFrame(columns=[c.name for c in columns])
-        #columns_df = columns_df.append(pd.Series([c.data_type for c in columns], index=columns_df.columns), ignore_index=True)
-        alter_df = pd.Series([c.data_type for c in columns], index=columns_df.columns)
-        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
-        #columns_df = columns_df.append(pd.Series([c.length for c in columns], index=columns_df.columns), ignore_index=True)
-        alter_df = pd.Series([c.length for c in columns], index=columns_df.columns)
-        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
-        #columns_df = columns_df.append(pd.Series([str(c.nullable) for c in columns], index=columns_df.columns), ignore_index=True)
-        alter_df = pd.Series([str(c.nullable) for c in columns], index=columns_df.columns)
-        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
-        #columns_df = columns_df.append(pd.Series([str(c.primary_key) for c in columns], index=columns_df.columns), ignore_index=True)
-        alter_df = pd.Series([str(c.primary_key) for c in columns], index=columns_df.columns)
-        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
-
-        # Transpose the DataFrame to show records in rows and columns in columns
-        columns_df = columns_df.T
-        columns_df.columns = ['Data Type', 'Length', 'Nullable', 'Primary Key']
-
-        st.table(columns_df)
-    else:
-        st.info('No columns added yet.')
-    """
 
     # Create Table button
     if st.button('Create Table'):
@@ -171,7 +145,7 @@ def main():
             create_table(URL, api_json, storage_token)
 
     # Display API endpoint and JSON
-    with st.expander("geeky stuff", expanded=False):
+    with st.expander("geeky stuff", expanded=True):
         st.header('API Endpoint and JSON')
         st.write("API endpoint: {}".format(URL))
         st.info(api_json)
