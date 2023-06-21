@@ -140,10 +140,18 @@ def main():
     st.header('Columns')
     if columns:
         columns_df = pd.DataFrame(columns=[c.name for c in columns])
-        columns_df = columns_df.append(pd.Series([c.data_type for c in columns], index=columns_df.columns), ignore_index=True)
-        columns_df = columns_df.append(pd.Series([c.length for c in columns], index=columns_df.columns), ignore_index=True)
-        columns_df = columns_df.append(pd.Series([str(c.nullable) for c in columns], index=columns_df.columns), ignore_index=True)
-        columns_df = columns_df.append(pd.Series([str(c.primary_key) for c in columns], index=columns_df.columns), ignore_index=True)
+        #columns_df = columns_df.append(pd.Series([c.data_type for c in columns], index=columns_df.columns), ignore_index=True)
+        alter_df = pd.Series([c.data_type for c in columns], index=columns_df.columns)
+        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
+        #columns_df = columns_df.append(pd.Series([c.length for c in columns], index=columns_df.columns), ignore_index=True)
+        alter_df = pd.Series([c.length for c in columns], index=columns_df.columns)
+        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
+        #columns_df = columns_df.append(pd.Series([str(c.nullable) for c in columns], index=columns_df.columns), ignore_index=True)
+        alter_df = pd.Series([str(c.nullable) for c in columns], index=columns_df.columns)
+        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
+        #columns_df = columns_df.append(pd.Series([str(c.primary_key) for c in columns], index=columns_df.columns), ignore_index=True)
+        alter_df = pd.Series([str(c.primary_key) for c in columns], index=columns_df.columns)
+        columns_df = pd.concat([columns_df, alter_df], axis=0, ignore_index=True)
 
         # Transpose the DataFrame to show records in rows and columns in columns
         columns_df = columns_df.T
